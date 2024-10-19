@@ -7,29 +7,35 @@ on:
 
   workflow_dispatch:
 
-env:
-  FILE_NAME: Changelog.MD
+# env:
+#   FILE_NAME: Changelog.MD
 
 jobs:
   build:
     runs-on: ubuntu-latest
     
-    env:
-      inside: inside_build
+    # env:
+    #   inside: inside_build
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run a one-line script
-        run: | 
-          echo Hello, world! $FILE_NAME
-          echo $inside
-          echo $outside
+      - name: Call from secret
+        run: echo ${{ secrets.INITIAL_TOKEN }}
 
-      - name: Run a multi-line script
-        run: |
-          echo Hello, world! $FILE_NAME
-          echo $inside
-          echo $outside
-        env: 
-          outside: inside_step
+      - name: Call from variable
+        run: echo ${{ vars.INITIAL_VARIABLE }}
+
+      # - name: Run a one-line script
+      #   run: | 
+      #     echo Hello, world! $FILE_NAME
+      #     echo $inside
+      #     echo $outside
+
+      # - name: Run a multi-line script
+      #   run: |
+      #     echo Hello, world! $FILE_NAME
+      #     echo $inside
+      #     echo $outside
+      #   env: 
+      #     outside: inside_step
