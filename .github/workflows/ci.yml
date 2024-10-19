@@ -6,7 +6,8 @@ on:
     tags: [ "v*" ]
 
   workflow_dispatch:
-
+  
+# This is environment variable
 # env:
 #   FILE_NAME: Changelog.MD
 
