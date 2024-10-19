@@ -41,7 +41,7 @@ jobs:
       #     outside: inside_step
 
       - name: build
-        run: docker build -t a8017/webapp:latest -f Dockerfile .
+        run: docker build -t somendocker/webapp:latest -f Dockerfile .
 
       - name: login
         uses: docker/login-action@v3
@@ -50,4 +50,4 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: push
-        run: docker push a8017/webapp:latest
+        run: docker push somendocker/webapp:latest
