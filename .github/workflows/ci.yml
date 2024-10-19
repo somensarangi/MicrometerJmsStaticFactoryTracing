@@ -20,11 +20,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Call from secret
-        run: echo ${{ secrets.INITIAL_TOKEN }}
-
-      - name: Call from variable
-        run: echo ${{ vars.INITIAL_VARIABLE }}
+      #      - name: Call from secret
+      #        run: echo ${{ secrets.INITIAL_TOKEN }}
+      #
+      #      - name: Call from variable
+      #        run: echo ${{ vars.INITIAL_VARIABLE }}
 
       # - name: Run a one-line script
       #   run: | 
@@ -39,3 +39,15 @@ jobs:
       #     echo $outside
       #   env: 
       #     outside: inside_step
+
+      - name: build
+        run: docker build -t a8017/webapp:latest -f Dockerfile .
+
+      - name: login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: push
+        run: docker push a8017/webapp:latest
